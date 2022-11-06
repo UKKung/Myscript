@@ -59,7 +59,7 @@ local Toggle = Tab:CreateToggle({
 local Button = Tab:CreateButton({
 	Name = "Go to 210K Studs",
 	Callback = function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5.818909168243408, 2.9999992847442627, -146397.4375)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3.933037281036377, 2.999999523162842, -187190.5625)
 	end,
 })
 
@@ -91,7 +91,7 @@ spawn(function()
         local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.5), 
         {CFrame = CFrame.new(-0.5010624527931213, 2.999999761581421, -34.44432067871094)}):Play()
         wait (1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5.818909168243408, 2.9999992847442627, -146397.4375)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3.933037281036377, 2.999999523162842, -187190.5625)
         wait (6)
         end
     end
