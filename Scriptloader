@@ -1,4 +1,4 @@
-local gameid = gamePlaceId
+local gameid = game.PlaceId
 
 if(gameid == 9912491609) then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UKKung/Myscript/main/Howfaryoucanfly"))();
