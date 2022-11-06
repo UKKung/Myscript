@@ -6,4 +6,5 @@ else if(gameid == 638189480) then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UKKung/Myscript/main/KL"))();
 else
     print ("vaild game")
+    end
 end
