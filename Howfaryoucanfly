@@ -26,6 +26,21 @@ local Window = Rayfield:CreateWindow({
 	}
 })
 
+Rayfield:Notify({
+    Title = "Update 11/6/2022",
+    Content = "-add notify     -fix position",
+    Duration = 6.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Okay!",
+            Callback = function()
+                print("Loaded")
+            end
+		},
+	},
+})
+
 local Tab = Window:CreateTab("Farm", 4483362458) -- Title, Image
 
 local Section = Tab:CreateSection("Farm")
@@ -70,6 +85,8 @@ spawn(function()
     while wait() do
         if _G.Autofarm then
         wait (1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0.5341638326644897, 2.999999761581421, -23.641921997070312)
+        wait (0.5)
         local TweenService = game:GetService("TweenService")
         local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.5), 
         {CFrame = CFrame.new(-0.5010624527931213, 2.999999761581421, -34.44432067871094)}):Play()
