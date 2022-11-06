@@ -1,8 +1,6 @@
 local gameid = game.PlaceId
 
 if(gameid == 9912491609) then
-    print ("Game support")
-    wait (0.1)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UKKung/Myscript/main/Howfaryoucanfly"))(); 
 else
     print ("vaild game")
