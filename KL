@@ -107,7 +107,7 @@ local Noclip = Instance.new("Part",workspace)
 spawn(function()
     while   wait()  do
         if _G.partspawn then
-                game:GetService("Workspace"):FindFirstChild("Noclip").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-3, 0)    
+                game:GetService("Workspace"):FindFirstChild("Noclip").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-3.2, 0)    
         end
     end
 end)
