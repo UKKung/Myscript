@@ -43,7 +43,7 @@ local Toggle = Tab:CreateToggle({
 	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 	  _G.safemode = Value	-- The function that takes place when the toggle is pressed
-    		-- The variable (Value) is a boolean on whether the toggle is true or false
+    	  _G.partspawn = Value	-- The variable (Value) is a boolean on whether the toggle is true or false
 	end,
 })
 
@@ -88,3 +88,22 @@ spawn(function()
         end
     end
 end)
+
+
+
+do
+    local NM = game:GetService("Workspace"):FindFirstChild("Noclip")
+    if NM then
+        NM:Destroy()
+    end    
+end
+local Noclip = Instance.new("Part",workspace)
+     Noclip.Name = "Noclip"
+     Noclip.CanCollide = true
+     Noclip.Anchored = true
+     Noclip.Transparency = 0.9
+     Noclip.Size = Vector3.new(30,-5,30)
+     Noclip.Rotation = Vector3.new(0,0,0)
+function partspawn()
+game:GetService("Workspace"):FindFirstChild("Noclip").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-3, 0)    
+end
