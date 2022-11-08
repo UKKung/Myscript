@@ -8,5 +8,6 @@ else if(gameid == 537413528) then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UKKung/Myscript/main/BABFT"))();
 else
     print ("vaild game")
+        end
     end
 end
