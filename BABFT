@@ -1,0 +1,103 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Window = Rayfield:CreateWindow({
+	Name = "Build A Boat For Treasure",
+	LoadingTitle = "Build A Boat For Treasure",
+	LoadingSubtitle = "by Yu HUB",
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = nil, -- Create a custom folder for your hub/game
+		FileName = "Big Hub"
+	},
+        Discord = {
+        	Enabled = false,
+        	Invite = "sirius", -- The Discord invite code, do not include discord.gg/
+        	RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        },
+	KeySystem = false, -- Set this to true to use our key system
+	KeySettings = {
+		Title = "Sirius Hub",
+		Subtitle = "Key System",
+		Note = "Join the discord (discord.gg/sirius)",
+		FileName = "SiriusKey",
+		SaveKey = true,
+		GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+		Key = "Hello"
+	}
+})
+
+Rayfield:Notify({
+    Title = "Script loaded",
+    Content = "",
+    Duration = 6.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Okay!",
+            Callback = function()
+                print("Script loaded")
+            end
+		},
+	},
+})
+
+local Tab = Window:CreateTab("Home", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("Home")
+
+local Paragraph = Tab:CreateParagraph({Title = "Update 11/8/2022", Content = "-auto farm -walk speed and other.."})
+
+local Tab = Window:CreateTab("AutoFarm", 4483362458)
+local Section = Tab:CreateSection("AutoFarm")
+
+local Toggle = Tab:CreateToggle({
+	Name = "AutoFarm",
+	CurrentValue = false,
+	Flag = "Farm", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		_G.AutoFarm = Value-- The function that takes place when the toggle is pressed	-- The variable (Value) is a boolean on whether the toggle is true or false
+	end,
+})
+
+local Tab = Window:CreateTab("Misc", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Misc")
+
+local Slider = Tab:CreateSlider({
+	Name = "walk speed",
+	Range = {16, 120},
+	Increment = 1,
+	Suffix = "Speed",
+	CurrentValue = 16,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(sped)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = sped	-- The function that takes place when the slider changes
+    		-- The variable (Value) is a number which correlates to the value the slider is currently at
+	end,
+})
+
+
+spawn(function()
+    while wait() do
+        if _G.AutoFarm then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-59, 110, 863)
+            wait(0.1)
+            local TweenService = game:GetService("TweenService")
+            local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(30), 
+            {CFrame = CFrame.new(-59, 110, 8722)}):Play()
+            wait(30)
+            local TweenService = game:GetService("TweenService")
+            local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2), 
+            {CFrame = CFrame.new(-59, -359, 9495)}):Play()
+            wait(20)
+        end
+    end
+end)
+
+spawn(function()
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and _G.AutoFarm then
+            setfflag("HumanoidParallelRemoveNoPhysics", "False")
+            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+            game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+        end
+    end)
+end)
