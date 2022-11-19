@@ -1,0 +1,58 @@
+local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
+
+local MainUI = UILibrary.Load("Selling Bounty By Yu HUB")
+local FirstPage = MainUI.AddPage("Home")
+
+
+local FirstToggle = FirstPage.AddToggle("Selling Bounty", false, function(state)
+    _G.SellBounty = state
+end)
+
+local FirstToggle = FirstPage.AddToggle("Enable PVP", false, function(state)
+    _G.Enablepvp = state
+end)
+
+
+
+--settingtable
+_G.SellBounty = false
+_G.Enablepvp = false
+
+Coloseb = CFrame.new(-1836.067138671875, 45.82050323486328, 1364.603759765625)
+
+
+spawn(function()
+    while wait() do
+        if _G.SellBounty then
+            local TweenService = game:GetService("TweenService")
+            local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+            {CFrame = CFrame.new(-1836.067138671875, 45.82050323486328, 1364.603759765625)}):Play()
+            wait(2)
+           if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+           _G.SellBounty = false
+           wait(2) 
+           _G.SellBounty = true
+        end
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if _G.Enablepvp then
+          local A_1 = "EnablePvp"
+          local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"]
+          Event:InvokeServer(A_1)
+        end
+    end
+end)
+
+spawn(function()
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and _G.SellBounty then
+            setfflag("HumanoidParallelRemoveNoPhysics", "False")
+            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+            game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+        end
+    end)
+end)
