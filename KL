@@ -43,8 +43,6 @@ local Toggle = Tab:CreateToggle({
 	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 	  _G.safemode = Value	-- The function that takes place when the toggle is pressed
-    	  _G.partspawn = Value	-- The variable (Value) is a boolean on whether the toggle is true or false
-	end,
 })
 
 local Button = Tab:CreateButton({
@@ -89,25 +87,15 @@ spawn(function()
     end
 end)
 
-
-
-do
-    local NM = game:GetService("Workspace"):FindFirstChild("Noclip")
-    if NM then
-        NM:Destroy()
-    end    
-end
-local Noclip = Instance.new("Part",workspace)
-     Noclip.Name = "Noclip"
-     Noclip.CanCollide = true
-     Noclip.Anchored = true
-     Noclip.Transparency = 1
-     Noclip.Size = Vector3.new(30,-5,30)
-     Noclip.Rotation = Vector3.new(0,0,0)
 spawn(function()
-    while   wait()  do
-        if _G.partspawn then
-                game:GetService("Workspace"):FindFirstChild("Noclip").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-3.2, 0)    
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and _G.safemode then
+            setfflag("HumanoidParallelRemoveNoPhysics", "False")
+            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+            game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
         end
-    end
+    end)
 end)
+
+
+
