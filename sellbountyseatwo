@@ -109,7 +109,7 @@ spawn(function()
            if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
            _G.SellBounty = false
            _G.Enablepvp = false
-           wait(3) 
+           wait(3.5) 
            _G.SellBounty = true
            _G.Enablepvp = true
            wait(0.000000000000001)
