@@ -105,6 +105,7 @@ spawn(function()
             local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2.8, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
             {CFrame = CFrame.new(-1836.067138671875, 45.82050323486328, 1364.603759765625)}):Play()
             wait(2.8)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1836.067138671875, 45.82050323486328, 1364.603759765625)
            if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
            _G.SellBounty = false
            _G.Enablepvp = false
