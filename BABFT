@@ -44,7 +44,7 @@ local Tab = Window:CreateTab("Home", 4483362458) -- Title, Image
 
 local Section = Tab:CreateSection("Home")
 
-local Paragraph = Tab:CreateParagraph({Title = "Update 11/11/2022", Content = "-Add Buy Chest"})
+local Paragraph = Tab:CreateParagraph({Title = "Update 11/26/2022", Content = "-Fix AutoFarm"})
 
 local Tab = Window:CreateTab("AutoFarm", 4483362458)
 local Section = Tab:CreateSection("AutoFarm")
@@ -126,6 +126,9 @@ spawn(function()
             local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2), 
             {CFrame = CFrame.new(-59, -359, 9495)}):Play()
             wait(20)
+            if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+                _G.AutoFarm = false
+            end
         end
     end
 end)
