@@ -98,6 +98,14 @@ section:TextLabel({
    Text = "need to wait 2-5 sec before change team"
 })
 ---funtion
+local function tp(cframe, speed)
+   local plr = game:GetService("Players").LocalPlayer.Character
+   local tween = game:GetService("TweenService")
+   
+   tween:Create(plr.HumanoidRootPart,TweenInfo.new(speed,Enum.EasingStyle.Linear),{CFrame = cframe}):Play()
+end
+
+---Extra funtionc
 spawn(function()
     while wait() do
         if _G.SellBounty then
