@@ -97,12 +97,52 @@ section:TextLabel({
 section:TextLabel({
    Text = "need to wait 2-5 sec before change team"
 })
+
+local column = tabsection:AddColumn({
+   Title = "World"
+})
+
+local section = column:Section({
+   Title = "World"
+})
+
+section:Button({
+   Text = "World1",
+   Callback = function() 
+      TP_World1()  
+    end
+})
+section:Button({
+   Text = "World2",
+   Callback = function() 
+      TP_World2()  
+    end
+})
+section:Button({
+   Text = "World3",
+   Callback = function() 
+      TP_World3()  
+    end
+})
 ---funtion
 local function tp(cframe, speed)
    local plr = game:GetService("Players").LocalPlayer.Character
    local tween = game:GetService("TweenService")
    
    tween:Create(plr.HumanoidRootPart,TweenInfo.new(speed,Enum.EasingStyle.Linear),{CFrame = cframe}):Play()
+end
+
+function TP_World1()
+    _G.TP_Ser = true
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
+end
+function TP_World2()
+    _G.TP_Ser = true
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")	
+end
+function TP_World3()
+    _G.TP_Ser = true
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
 end
 
 ---Extra funtionc
