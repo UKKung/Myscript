@@ -1,137 +1,3 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Kronos"))()
-
-local window = library:Window({
-   Title = "Sell Bounty By Yu HUB (Blox fruit)",
-   Accent = Color3.fromRGB(69,69,207),
-   Logo = 3610245066,
-   ToggleKey = Enum.KeyCode.LeftAlt
-})
-
-local tab = window:NewTab({
-   Logo = 4483345998
-})
-
-local tabsection = tab:TabSection({
-   Title = "Home"
-})
-
-local column = tabsection:AddColumn({
-   Title = "Sell Bounty"
-})
-
-local section = column:Section({
-   Title = "Sell Bounty"
-})
-
-section:Toggle({
-   Text = "Sell Bounty",
-   State = false,
-   Callback = function(state)
-       _G.SellBounty = state
-       end
-})
-
-section:Dropdown({
-   Text = "Teleportation",
-   List = {'Collossium (Default)', 'Plants', "Font of cafe"},
-   Callback = function(Value) 
-       _G.Teleportation = Value
-       print (_G.Teleportation)
-   end
-})
-
-section:Toggle({
-   Text = "Enable PVP",
-   State = false,
-   Callback = function(state)
-       _G.EnablePVPv2 = state
-       end
-})
-
-section:Toggle({
-   Text = "Enable PVP V2 (Will Not work)",
-   State = false,
-   Callback = function(state)
-       _G.Enablepvp = state
-       end
-})
-
-local column = tabsection:AddColumn({
-   Title = "Team"
-})
-
-local section = column:Section({
-   Title = "Team"
-})
-
-section:Button({
-   Text = "Pirate",
-   Callback = function() 
-        local args = {
-            [1] = "SetTeam",
-            [2] = "Pirates"
-        }
-
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        end
-})
-
-section:Button({
-   Text = "Marine",
-   Callback = function() 
-        local args = {
-            [1] = "SetTeam",
-            [2] = "Marines"
-        }
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        end
-})
-
-section:TextLabel({
-   Text = "When you gonna change team"
-})
-
-section:TextLabel({
-   Text = "immediately after you change team, you"
-})
-section:TextLabel({
-   Text = "need to wait 2-5 sec before change team"
-})
-
-local column = tabsection:AddColumn({
-   Title = "World"
-})
-
-local section = column:Section({
-   Title = "World"
-})
-
-section:Button({
-   Text = "World1",
-   Callback = function() 
-      TP_World1()  
-    end
-})
-section:Button({
-   Text = "World2",
-   Callback = function() 
-      TP_World2()  
-    end
-})
-section:Button({
-   Text = "World3",
-   Callback = function() 
-      TP_World3()  
-    end
-})
----funtion
-local function tp(cframe, speed)
-   local plr = game:GetService("Players").LocalPlayer.Character
-   local tween = game:GetService("TweenService")
-   
-   tween:Create(plr.HumanoidRootPart,TweenInfo.new(speed,Enum.EasingStyle.Linear),{CFrame = cframe}):Play()
-end
-
 function TP_World1()
     _G.TP_Ser = true
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
@@ -144,50 +10,249 @@ function TP_World3()
     _G.TP_Ser = true
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
 end
+local World = game.PlaceId
+if World == 2753915549 then
+    Old_World = true
+elseif World == 4442272183 then
+    New_World = true
+elseif World == 7449423635 then
+    Three_World = true
+end 
 
----Extra funtionc
-spawn(function()
-    while wait() do
-        if _G.SellBounty then
-            tp(CFrame.new(Vector3.new(-1836.067138671875, 45.82050323486328, 1364.603759765625)),0.5)
-           if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
-           _G.SellBounty = false
-           wait(3.8) 
-           _G.SellBounty = true
-        end
-        end
+if New_World then
+local TPToggle = true
+function TP2(P1)
+    while TPToggle == true do
+        local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                    if Distance < 150 then
+                        Speed = 20000
+                    elseif Distance < 200 then
+                        wait(0.2)
+                        Speed = 5000
+                    elseif Distance < 300 then
+                        wait(0.2)
+                        Speed = 1520
+                    elseif Distance < 500 then
+                        wait(0.2)
+                        Speed = 1000
+                    elseif Distance < 1000 then
+                        wait(0.2)
+                        Speed = 350
+                    elseif Distance >= 1000 then
+                        wait(0.2)
+                        Speed = 350
+                    end
+        game:GetService("TweenService"):Create(
+            game.Players.LocalPlayer.Character.HumanoidRootPart,
+            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+            {CFrame = P1}
+        ):Play()
+        _G.Clip = true
+        wait(Distance/Speed)
+        _G.Clip = false
     end
-end)
+end
 
-spawn(function()
-    while wait() do
-        if _G.EnablePVPv2 then
-          local A_1 = "EnablePvp"
-          local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"]
-          Event:InvokeServer(A_1)
-        end
-    end
-end)
+function toggleTP()
+    TPToggle = not TPToggle
+end
 
 spawn(function()
     game:GetService("RunService").Heartbeat:Connect(function()
-        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and _G.SellBounty then
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and _G.Clip then
             setfflag("HumanoidParallelRemoveNoPhysics", "False")
             setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
             game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
         end
     end)
 end)
+elseif Three_World then
+    local TPToggle = true
+function TP2(P1)
+    while TPToggle == true do
+        local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                    if Distance < 150 then
+                        Speed = 20000
+                    elseif Distance < 200 then
+                        wait(0.2)
+                        Speed = 5000
+                    elseif Distance < 300 then
+                        wait(0.2)
+                        Speed = 1520
+                    elseif Distance < 1000 then
+                        wait(0.2)
+                        Speed = 650
+                    elseif Distance >= 1000 then
+                        wait(0.2)
+                        Speed = 500
+                    end
+        game:GetService("TweenService"):Create(
+            game.Players.LocalPlayer.Character.HumanoidRootPart,
+            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+            {CFrame = P1}
+        ):Play()
+        _G.Clip = true
+        wait(Distance/Speed)
+        _G.Clip = false
+    end
+end
+
+function toggleTP()
+    TPToggle = not TPToggle
+end
 
 spawn(function()
-    while wait() do
-        if _G.Enablepvp then
-        if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
-          wait(1.5)
-          local A_1 = "EnablePvp"
-          local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"]
-          Event:InvokeServer(A_1)
-            end
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and _G.Clip then
+            setfflag("HumanoidParallelRemoveNoPhysics", "False")
+            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+            game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
         end
+    end)
+end)
+end
+getgenv().TPPlace = "string"
+
+local DiscordLib = loadstring(game:HttpGet"https://gist.githubusercontent.com/TheBeautiFullBeach/406a6956595916f2abaaeef8478c0164/raw/ae1362d7ea85fe289d627790521dca16fc3c8d55/PattayaBeach")()
+
+local win = DiscordLib:Window("Lazium Blox Fruit")
+
+local serv = win:Server("Main","")
+
+
+local Island_Tab = serv:Channel("Teleport", "http://www.roblox.com/asset/?id=7040387707")
+local World_Tab = serv:Channel("World", "http://www.roblox.com/asset/?id=7040387707")
+local Misc_Tab = serv:Channel("Misc", "http://www.roblox.com/asset/?id=7040387707")
+
+World_Tab:Button("Teleport to World 1", function()
+                      
+    TP_World1()
+end)
+World_Tab:Button("Teleport to World 2", function()
+  
+    TP_World2()
+end)
+
+World_Tab:Button("Teleport to World 3", function()
+  
+    TP_World3()
+end)
+
+Misc_Tab:Button("Rejoin", function()
+  
+    local tpservice= game:GetService("TeleportService")
+local plr = game.Players.LocalPlayer
+
+tpservice:Teleport(game.PlaceId, plr)
+
+local target = game:GetService("Players").LocalPlayer
+local message = "Rejoin.."
+local gives_message = true
+if gives_message then
+    target:Kick(message)
+else
+    target:Kick()
+
     end
+end)
+
+---fpscap
+Misc_Tab:Label("Fps Caps (Can't change)")
+
+Misc_Tab:Button("Fps 40", function()
+    local RunService = game:GetService("RunService")
+    local MaxFPS = 40
+    while true do
+    local t0 = tick()
+    RunService.Heartbeat:Wait()
+    repeat until (t0 + 1/MaxFPS) < tick()
+    end
+end)
+
+Misc_Tab:Button("Fps 30", function()
+    local RunService = game:GetService("RunService")
+    local MaxFPS = 30
+    while true do
+    local t0 = tick()
+    RunService.Heartbeat:Wait()
+    repeat until (t0 + 1/MaxFPS) < tick()
+    end
+end)
+
+Misc_Tab:Button("Fps 15", function()
+    local RunService = game:GetService("RunService")
+    local MaxFPS = 15
+    while true do
+    local t0 = tick()
+    RunService.Heartbeat:Wait()
+    repeat until (t0 + 1/MaxFPS) < tick()
+    end
+end)
+
+Misc_Tab:Button("Fps 5", function()
+    local RunService = game:GetService("RunService")
+    local MaxFPS = 5
+    while true do
+    local t0 = tick()
+    RunService.Heartbeat:Wait()
+    repeat until (t0 + 1/MaxFPS) < tick()
+    end
+end)
+---
+
+Island_Tab:Label("Map")
+
+Island_Tab:Toggle(
+    "Tween",
+    false,
+    function(state)
+        if state then
+        if getgenv().TPPlace == "Colosseum" then
+        TP2(CFrame.new(-1831, 45.82050323486328, 1364))
+        elseif getgenv().TPPlace == "Flamingo's Mansion" then
+            TP2(CFrame.new(-389, 331.8863525390625, 612))
+        elseif getgenv().TPPlace == "Kingdom of rose" then
+            TP2(CFrame.new(-392, 123.18550872802734, 1039))
+        elseif getgenv().TPPlace == "Cafe" then
+            TP2(CFrame.new(-471, 72.98555755615234, -88))
+        elseif getgenv().TPPlace == "Mansion" then
+            TP2(CFrame.new(-12541, 331.7884216308594, -7922))
+        elseif getgenv().TPPlace == "Castle on the sea" then
+            TP2(CFrame.new(-5513, 313.7912902832031, -2899))
+        elseif getgenv().TPPlace == "Hydra" then
+            TP2(CFrame.new(-471, 72.98555755615234, -88))
+        elseif getgenv().TPPlace == "Areana" then
+            TP2(CFrame.new(-471, 72.98555755615234, -88))
+        end
+        else TPToggle = false
+            wait(0.1)
+            TPToggle = true
+
+            
+    end
+end
+)
+if New_World then
+local drop =
+    Island_Tab:Dropdown(
+    "TP Place",
+    {"Colosseum", "Flamingo's Mansion", "Kingdom of rose", "Cafe"},
+    function(W2)
+        getgenv().TPPlace = W2
+    end
+)
+elseif Three_World then
+   local drop =
+    Island_Tab:Dropdown(
+    "TP Place",
+    {"Mansion", "Castle on the sea", "Hydra", "Areana",},
+    function(W3)
+        getgenv().TPPlace = W3
+    end
+)
+end 
+Island_Tab:Button("Stop_Tween", function()
+    TPToggle = false
+    wait(0.1)
+    TPToggle = true
 end)
