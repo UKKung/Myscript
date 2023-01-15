@@ -74,16 +74,16 @@ function TP2(P1)
                     if Distance < 150 then
                         Speed = 20000
                     elseif Distance < 200 then
-                        wait(0.2)
+                        wait(0.25)
                         Speed = 5000
                     elseif Distance < 300 then
-                        wait(0.2)
+                        wait(0.25)
                         Speed = 1520
                     elseif Distance < 1000 then
-                        wait(0.2)
+                        wait(0.25)
                         Speed = 650
                     elseif Distance >= 1000 then
-                        wait(0.2)
+                        wait(0.25)
                         Speed = 500
                     end
         game:GetService("TweenService"):Create(
