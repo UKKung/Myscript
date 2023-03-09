@@ -1,4 +1,4 @@
-_G.Mode = Normal
+_G.Mode = 'Normal'
 --_G.Mode = Bounty
 local gameid = game.PlaceId
 
