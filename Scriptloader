@@ -1,5 +1,5 @@
 Print ("Fanta Familly's Script is loading...")
-
+wait(0.5)
 _G.Mode = 'Normal'
 --_G.Mode = 'BountySell'
 local gameid = game.PlaceId
