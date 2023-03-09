@@ -1,5 +1,5 @@
 _G.Mode = 'Normal'
---_G.Mode = BountySell
+--_G.Mode = 'BountySell'
 local gameid = game.PlaceId
 
 if syn then request = syn.request end
