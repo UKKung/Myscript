@@ -1,13 +1,19 @@
+_G.Mode = nil
+--_G.Mode = Bounty
 local gameid = game.PlaceId
 
-if(gameid == 9912491609) then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/UKKung/Myscript/main/Howfaryoucanfly"))(); 
-else if(gameid == 6381829480) then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/UKKung/Myscript/main/KL"))();
-else if(gameid == 537413528) then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/UKKung/Myscript/main/BABFT"))();
-else
+if syn then request = syn.request end
+if(gameid == 9912491609) and _G.Mode == nil then
+    loadstring(request({['Url']='https://raw.githubusercontent.com/UKKung/Myscript/main/Howfaryoucanfly',['Method']='GET'}).Body)() 
+else if(gameid == 6381829480) and _G.Mode == nil then
+    loadstring(request({['Url']='https://raw.githubusercontent.com/UKKung/Myscript/main/KL',['Method']='GET'}).Body)()
+else if(gameid == 537413528) and _G.Mode == nil then
+    loadstring(request({['Url']='https://raw.githubusercontent.com/UKKung/Myscript/main/BABFT',['Method']='GET'}).Body)()
+else if (gameid == 7449423635) or (gameid == 4442272183) and _G.Mode == BountySell then
+    loadstring(request({['Url']='https://raw.githubusercontent.com/UKKung/Myscript/main/SellBounty',['Method']='GET'}).Body)()
+    else
     print ("vaild game")
+            end
         end
     end
 end
